@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkyCast Pro weather dashboard for Prodesk IT Sprint 03.">
+  <title>SkyCast Pro | Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main application background wrapper. Dynamic weather classes are added by JavaScript. -->
+  <div class="page-shell weather-clear" id="page-shell">
+    <!-- App header with project title and quick actions. -->
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Prodesk IT Sprint 03</p>
+        <h1>SkyCast Pro</h1>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          Dark
+        </button>
+        <button class="icon-button" id="location-button" type="button">
+          Use Location
+        </button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <!-- Search, controls, and search history. -->
+      <section class="control-panel glass-panel" aria-label="Weather controls">
+        <form class="search-form" id="weather-form">
+          <label for="city-input">Search city</label>
+          <div class="search-row">
+            <div class="search-input-wrap">
+              <input
+                id="city-input"
+                type="search"
+                placeholder="Enter city name"
+                autocomplete="off"
+                aria-autocomplete="list"
+                aria-controls="city-suggestions"
+                required
+              >
+              <div class="city-suggestions hidden" id="city-suggestions" role="listbox"></div>
+            </div>
+            <button class="primary-button" type="submit">Search</button>
+          </div>
+        </form>
+
+        <div class="toolbar">
+          <div class="unit-toggle" role="group" aria-label="Temperature unit">
+            <button class="unit-button active" id="celsius-button" type="button" data-unit="metric">
+              Celsius
+            </button>
+            <button class="unit-button" id="fahrenheit-button" type="button" data-unit="imperial">
+              Fahrenheit
+            </button>
+          </div>
+
+          <button class="ghost-button" id="refresh-button" type="button">
+            Refresh
+          </button>
+          <button class="ghost-button" id="download-button" type="button">
+            Download PDF
+          </button>
+        </div>
+
+        <section class="history-section" aria-label="Search history">
+          <div class="section-heading">
+            <h2>Search History</h2>
+            <button class="link-button" id="clear-history-button" type="button">
+              Clear
+            </button>
+          </div>
+          <div class="history-list" id="history-list"></div>
+        </section>
+      </section>
+
+      <!-- Weather output area with loading, error, and success states. -->
+      <section class="weather-stage glass-panel" aria-live="polite">
+        <div class="loading-state hidden" id="loading-state">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>Loading weather data...</p>
+        </div>
+
+        <div class="error-state hidden" id="error-state">
+          <h2 id="error-title">City not found</h2>
+          <p id="error-message">Please check the spelling and try again.</p>
+        </div>
+
+        <article class="weather-card" id="weather-card">
+          <div class="weather-topline">
+            <div>
+              <p class="eyebrow">Current Weather</p>
+              <h2 id="city-name">Search for a city</h2>
+              <p id="coordinates">Coordinates will appear here</p>
+            </div>
+            <img id="weather-icon" src="" alt="" class="weather-icon hidden">
+          </div>
+
+          <div class="temperature-row">
+            <p class="temperature" id="temperature">--</p>
+            <div>
+              <p class="condition" id="condition">Weather condition</p>
+              <p class="updated" id="last-updated">Last updated: --</p>
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric">
+              <span>Humidity</span>
+              <strong id="humidity">--</strong>
+            </div>
+            <div class="metric">
+              <span>Wind Speed</span>
+              <strong id="wind-speed">--</strong>
+            </div>
+            <div class="metric">
+              <span>Pressure</span>
+              <strong id="pressure">--</strong>
+            </div>
+            <div class="metric">
+              <span>Visibility</span>
+              <strong id="visibility">--</strong>
+            </div>
+            <div class="metric">
+              <span>Sunrise</span>
+              <strong id="sunrise">--</strong>
+            </div>
+            <div class="metric">
+              <span>Sunset</span>
+              <strong id="sunset">--</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Required project footer. -->
+    <footer class="app-footer">
+      <p>Project Made By</p>
+      <strong>ARPIT RAJ KATIYAR</strong>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

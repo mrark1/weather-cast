@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Soft weather background">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#9bd8e7"/>
+      <stop offset="0.5" stop-color="#f3d58a"/>
+      <stop offset="1" stop-color="#7bb8c9"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff7bf"/>
+      <stop offset="1" stop-color="#f1ad43" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1240" cy="180" r="260" fill="url(#sun)" opacity="0.8"/>
+  <path fill="#ffffff" fill-opacity="0.38" d="M0 720c140-80 290-114 450-102 170 13 270 92 444 88 200-5 296-116 476-100 100 9 176 52 230 92v302H0z"/>
+  <path fill="#316171" fill-opacity="0.18" d="M0 795c176-78 324-81 444-44 149 46 230 139 410 126 202-15 276-145 468-128 116 10 207 69 278 130v121H0z"/>
+</svg>

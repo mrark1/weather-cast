@@ -1,0 +1,610 @@
+/* ================================
+   SkyCast Pro - Main Stylesheet
+   Project: Prodesk IT Sprint 03
+   Tech: HTML, CSS, Vanilla JavaScript
+================================ */
+
+:root {
+  color-scheme: light;
+  --text: #16242c;
+  --muted: #516673;
+  --panel: rgba(255, 255, 255, 0.72);
+  --panel-strong: rgba(255, 255, 255, 0.92);
+  --border: rgba(255, 255, 255, 0.46);
+  --input-border: rgba(80, 107, 121, 0.32);
+  --accent: #0f7b8f;
+  --accent-dark: #09596c;
+  --danger: #b42318;
+  --success: #11724b;
+  --shadow: 0 24px 70px rgba(18, 40, 54, 0.18);
+  --radius: 8px;
+  --transition: 220ms ease;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Dark mode values are applied when JavaScript adds the .dark class. */
+.page-shell.dark {
+  color-scheme: dark;
+  --text: #edf7fa;
+  --muted: #b7c8cf;
+  --panel: rgba(15, 27, 36, 0.68);
+  --panel-strong: rgba(15, 27, 36, 0.88);
+  --border: rgba(255, 255, 255, 0.16);
+  --input-border: rgba(255, 255, 255, 0.18);
+  --accent: #64d5e8;
+  --accent-dark: #24a8bd;
+  --danger: #ff8b7f;
+  --success: #68d7a7;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(15, 123, 143, 0.34);
+  outline-offset: 3px;
+}
+
+/* ================================
+   Dynamic Weather Backgrounds
+================================ */
+
+.page-shell {
+  min-height: 100vh;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(247, 250, 252, 0.58), rgba(202, 236, 243, 0.52)),
+    url("assets/images/weather-bg.svg");
+  background-color: #dcecf0;
+  background-position: center;
+  background-size: cover;
+  transition:
+    background-color 420ms ease,
+    color 260ms ease;
+}
+
+.weather-clear {
+  background-color: #c9eff4;
+}
+
+.weather-clouds {
+  background-color: #d9e2e7;
+}
+
+.weather-rain,
+.weather-drizzle,
+.weather-thunderstorm {
+  background-color: #b9cad4;
+}
+
+.weather-snow {
+  background-color: #edf6f8;
+}
+
+.weather-mist,
+.weather-fog,
+.weather-haze {
+  background-color: #d4dde0;
+}
+
+/* ================================
+   Layout
+================================ */
+
+.app-header,
+.dashboard,
+.app-footer {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 22px;
+}
+
+.glass-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.control-panel,
+.weather-stage {
+  padding: 24px;
+}
+
+.weather-stage {
+  position: relative;
+  min-height: 555px;
+  overflow: hidden;
+}
+
+/* ================================
+   Typography
+================================ */
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent-dark);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.dark .eyebrow {
+  color: var(--accent);
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: 0.95;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+#city-name {
+  margin-bottom: 6px;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+}
+
+#coordinates,
+.updated,
+.condition,
+.metric span {
+  color: var(--muted);
+}
+
+/* ================================
+   Header and Controls
+================================ */
+
+.header-actions,
+.toolbar,
+.search-row,
+.temperature-row,
+.weather-topline,
+.section-heading {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions,
+.toolbar {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-form {
+  display: grid;
+  gap: 10px;
+}
+
+.search-form label,
+.section-heading h2 {
+  font-weight: 800;
+}
+
+.search-row {
+  gap: 10px;
+}
+
+.search-input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  color: var(--text);
+  padding: 0 14px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+input::placeholder {
+  color: var(--muted);
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(15, 123, 143, 0.16);
+}
+
+.city-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: grid;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  box-shadow: 0 18px 42px rgba(18, 40, 54, 0.18);
+}
+
+.suggestion-item {
+  min-height: 40px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0 14px;
+  text-align: left;
+}
+
+.suggestion-item:hover,
+.suggestion-item:focus-visible {
+  background: rgba(15, 123, 143, 0.12);
+}
+
+.primary-button,
+.ghost-button,
+.icon-button,
+.unit-button,
+.link-button,
+.history-chip {
+  min-height: 42px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 800;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    opacity 180ms ease,
+    border-color 180ms ease;
+}
+
+.primary-button:hover,
+.ghost-button:hover,
+.icon-button:hover,
+.unit-button:hover,
+.history-chip:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background: var(--accent-dark);
+  color: #ffffff;
+  padding: 0 22px;
+}
+
+.primary-button:hover {
+  background: var(--accent);
+}
+
+.ghost-button,
+.icon-button,
+.unit-button,
+.history-chip {
+  border: 1px solid rgba(80, 107, 121, 0.22);
+  background: var(--panel-strong);
+  color: var(--text);
+  padding: 0 14px;
+}
+
+.toolbar {
+  margin: 20px 0 26px;
+}
+
+.unit-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  border-radius: var(--radius);
+  background: rgba(20, 49, 63, 0.08);
+  padding: 4px;
+}
+
+.unit-button {
+  min-height: 36px;
+  border: 0;
+}
+
+.unit-button.active {
+  background: var(--accent-dark);
+  color: #ffffff;
+}
+
+.section-heading {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.link-button {
+  min-height: auto;
+  background: transparent;
+  color: var(--accent-dark);
+  padding: 4px 0;
+}
+
+.dark .link-button {
+  color: var(--accent);
+}
+
+/* ================================
+   Search History
+================================ */
+
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 42px;
+  margin-top: 14px;
+}
+
+.history-chip {
+  min-height: 36px;
+}
+
+/* ================================
+   Weather Card
+================================ */
+
+.weather-card {
+  display: grid;
+  gap: 28px;
+}
+
+.weather-topline {
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.weather-icon {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+}
+
+.temperature-row {
+  gap: 24px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.temperature {
+  margin-bottom: 0;
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 900;
+  line-height: 0.82;
+}
+
+.condition {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  display: grid;
+  gap: 8px;
+  min-height: 112px;
+  border: 1px solid rgba(80, 107, 121, 0.18);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  padding: 16px;
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.metric:hover {
+  transform: translateY(-2px);
+}
+
+.metric strong {
+  align-self: end;
+  font-size: 1.28rem;
+}
+
+/* ================================
+   Loading and Error States
+================================ */
+
+.loading-state,
+.error-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 16px;
+  z-index: 3;
+  background: var(--panel);
+  padding: 28px;
+  text-align: center;
+}
+
+.error-state h2 {
+  color: var(--danger);
+}
+
+.spinner {
+  width: 54px;
+  height: 54px;
+  border: 5px solid rgba(15, 123, 143, 0.18);
+  border-top-color: var(--accent-dark);
+  border-radius: 50%;
+  animation: spin 850ms linear infinite;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================
+   Footer
+================================ */
+
+.app-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.app-footer p {
+  margin-bottom: 4px;
+  color: var(--muted);
+}
+
+.app-footer strong {
+  letter-spacing: 0;
+}
+
+/* ================================
+   PDF / Print Report
+================================ */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #weather-card,
+  #weather-card * {
+    visibility: visible;
+  }
+
+  #weather-card {
+    position: absolute;
+    inset: 24px;
+    color: #000000;
+  }
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+@media (max-width: 860px) {
+  .page-shell {
+    padding: 18px;
+  }
+
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-stage {
+    min-height: auto;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .control-panel,
+  .weather-stage {
+    padding: 18px;
+  }
+
+  .search-row,
+  .header-actions,
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .ghost-button,
+  .icon-button {
+    width: 100%;
+  }
+
+  .unit-toggle,
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .weather-icon {
+    width: 88px;
+    height: 88px;
+  }
+}

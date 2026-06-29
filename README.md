@@ -8,11 +8,10 @@ SkyCast Pro provides real-time weather information using the **OpenWeatherMap AP
 
 ## 🚀 Live Demo
   
-**Live Website:** *(Add your Vercel URL here)*
+**Live Website:** [https://weather-cast-xi.vercel.app](https://weather-cast-xi.vercel.app)
 
-**GitHub Repository:** *(Add your GitHub Repository URL here)*
+**GitHub Repository:** [https://github.com/mrark1/weather-cast](https://github.com/mrark1/weather-cast)
 
----
 
 ## 📌 Project Objectives
 
@@ -23,7 +22,6 @@ SkyCast Pro provides real-time weather information using the **OpenWeatherMap AP
 * Implement browser geolocation.
 * Improve user experience using animations and responsive design.
 
----
 
 ## ✨ Features
 
@@ -57,7 +55,6 @@ SkyCast Pro provides real-time weather information using the **OpenWeatherMap AP
 * Dynamic Weather Backgrounds
 * Smooth CSS Theme Transitions
 
----
 
 ## ⭐ Additional Features
 
@@ -112,18 +109,10 @@ weather-cast/
 
 ## 📷 Screenshots
 
-Add screenshots inside:
+Home Page 
+![home page](image.png)
 
-assets/screenshots/
-
-Example:
-
-* Home Page
-* Search Result
-* Current Location
-* Dark Mode
-
----
+![alt text](image-1.png)
 
 ## ⚙️ Installation
 
